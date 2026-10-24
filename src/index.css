@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-white font-sans text-slate-900 antialiased; }
+  ::selection { @apply bg-brand-300/40; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .glass { @apply border border-white/10 bg-white/[0.06] backdrop-blur-xl; }
+  .glass-light { @apply border border-white/60 bg-white/70 backdrop-blur-xl; }
+  .card { @apply rounded-3xl border border-slate-200/80 bg-white shadow-card; }
+  .text-gradient { @apply bg-gradient-to-r from-brand-300 via-sky-300 to-indigo-300 bg-clip-text text-transparent; }
+  .text-gradient-dark { @apply bg-gradient-to-r from-brand-600 via-sky-600 to-indigo-600 bg-clip-text text-transparent; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-gradient-to-r from-brand-500 to-sky-500 text-white shadow-glow hover:brightness-110; }
+  .btn-dark { @apply btn bg-ink-900 text-white hover:bg-ink-800; }
+  .btn-ghost { @apply btn border border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50; }
+  .btn-ghost-dark { @apply btn border border-white/15 bg-white/5 text-white hover:bg-white/10; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[.18em]; }
+  .ph { @apply rounded-md bg-brand-100 px-1.5 py-0.5 font-mono text-[.8em] font-medium text-brand-700; }
+  .field { @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none transition focus:border-brand-400 focus:ring-4 focus:ring-brand-100; }
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+}
+
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
