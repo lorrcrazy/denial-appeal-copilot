@@ -72,7 +72,7 @@ export function Workspace({ cards, onShare }: { cards: WinCard[]; onShare: (p: S
   }
 
   return (
-    <section id="copilot" className="relative bg-paper-50 py-24 sm:py-28">
+    <section id="copilot" className="relative bg-paper-50 bg-[radial-gradient(60%_50%_at_50%_45%,rgba(126,193,203,.20),transparent),radial-gradient(40%_40%_at_85%_80%,rgba(169,200,240,.18),transparent)] py-24 sm:py-28">
       
       <div className="container-x relative">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -82,7 +82,7 @@ export function Workspace({ cards, onShare }: { cards: WinCard[]; onShare: (p: S
           </div>
         </div>
 
-        <div id="copilot-card" className="card mt-10 scroll-mt-24 overflow-hidden">
+        <div id="copilot-card" className="mt-10 scroll-mt-24 overflow-hidden rounded-[28px] border border-white/80 bg-white/70 shadow-[0_24px_60px_-30px_rgba(16,60,72,.35)] backdrop-blur-xl">
           <div className="border-b border-stone-100 bg-white/80 px-3 py-3 sm:px-6">
             <ol className="relative flex items-center justify-between">
               <div className="absolute left-5 right-5 top-1/2 h-0.5 -translate-y-1/2 rounded bg-stone-100 sm:left-8 sm:right-8" />
@@ -92,8 +92,8 @@ export function Workspace({ cards, onShare }: { cards: WinCard[]; onShare: (p: S
                 const current = i === step
                 return (
                   <li key={s.label} className="relative z-10">
-                    <button disabled={!unlocked} onClick={() => go(i)} className={`flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-1.5 text-sm font-medium transition sm:pr-4 ${current ? 'bg-ink-950 text-white shadow-lg' : unlocked ? 'bg-white text-stone-700 ring-1 ring-stone-200 hover:ring-stone-300' : 'bg-white text-stone-300 ring-1 ring-stone-100'}`}>
-                      <span className={`grid h-7 w-7 place-items-center rounded-full ${current ? 'bg-brand-500' : unlocked ? 'bg-brand-50 text-brand-600' : 'bg-stone-50'}`}>{unlocked && i < maxStep && !current ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}</span>
+                    <button disabled={!unlocked} onClick={() => go(i)} className={`flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-1.5 text-sm font-medium transition sm:pr-4 ${current ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/25' : unlocked ? 'bg-white text-stone-700 ring-1 ring-stone-200 hover:ring-stone-300' : 'bg-white text-stone-300 ring-1 ring-stone-100'}`}>
+                      <span className={`grid h-7 w-7 place-items-center rounded-full ${current ? 'bg-white/20' : unlocked ? 'bg-brand-50 text-brand-600' : 'bg-stone-50'}`}>{unlocked && i < maxStep && !current ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}</span>
                       <span className="hidden sm:inline">{s.label}</span>
                     </button>
                   </li>

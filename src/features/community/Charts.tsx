@@ -17,8 +17,8 @@ export function WinRateChart({ cards }: { cards: WinCard[] }) {
           <ComposedChart data={data} margin={{ top: 10, right: 8, bottom: 0, left: -18 }}>
             <defs>
               <linearGradient id="gAll" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#9AA6A6" stopOpacity={0.35} />
-                <stop offset="1" stopColor="#9AA6A6" stopOpacity={0} />
+                <stop offset="0" stopColor="#7EC1CB" stopOpacity={0.35} />
+                <stop offset="1" stopColor="#7EC1CB" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="gCited" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stopColor="#C4603F" stopOpacity={0.45} />
@@ -31,7 +31,7 @@ export function WinRateChart({ cards }: { cards: WinCard[] }) {
             <YAxis yAxisId="n" orientation="right" hide />
             <Tooltip contentStyle={tooltipStyle} formatter={(v, name) => (name === 'shared' ? [v, 'Cards shared'] : [`${v}%`, name === 'winRate' ? 'All appeals' : 'Cited policy or evidence'])} />
             <Bar yAxisId="n" dataKey="shared" fill="#DEDEDB" radius={[6, 6, 0, 0]} barSize={18} animationDuration={1200} />
-            <Area yAxisId="r" type="monotone" dataKey="winRate" stroke="#9AA6A6" strokeWidth={2.5} fill="url(#gAll)" connectNulls animationDuration={1800} dot={false} />
+            <Area yAxisId="r" type="monotone" dataKey="winRate" stroke="#7EC1CB" strokeWidth={2.5} fill="url(#gAll)" connectNulls animationDuration={1800} dot={false} />
             <Area yAxisId="r" type="monotone" dataKey="citedWinRate" stroke="#C4603F" strokeWidth={2.5} fill="url(#gCited)" connectNulls animationDuration={2200} dot={{ r: 3, fill: '#C4603F', strokeWidth: 0 }} />
           </ComposedChart>
         </ResponsiveContainer>
@@ -40,7 +40,7 @@ export function WinRateChart({ cards }: { cards: WinCard[] }) {
   )
 }
 
-const BAR_COLORS = ['#C4603F', '#3C4748', '#525F60', '#6F7D7D', '#9AA6A6', '#B5BDBD', '#C9C9C5']
+const BAR_COLORS = ['#C4603F', '#1F6F7D', '#2B8897', '#4CA4B2', '#7EC1CB', '#AEDAE0', '#C9C9C5']
 
 export function ReasonChart({ cards }: { cards: WinCard[] }) {
   const ref = useRef<HTMLDivElement>(null)

@@ -10,8 +10,8 @@ export function OddsGauge({ score }: { score: number }) {
         <defs>
           <linearGradient id="gauge" x1="0" x2="1">
             <stop offset="0" stopColor="#C9C9C5" />
-            <stop offset=".5" stopColor="#6F7D7D" />
-            <stop offset="1" stopColor="#2C3536" />
+            <stop offset=".5" stopColor="#4CA4B2" />
+            <stop offset="1" stopColor="#1A5966" />
           </linearGradient>
         </defs>
         <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#ECECEA" strokeWidth="14" strokeLinecap="round" />
