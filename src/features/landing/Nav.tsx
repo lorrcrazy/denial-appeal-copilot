@@ -27,8 +27,9 @@ export function Nav() {
           <a href="#agent" className="btn-ghost !px-3 !py-2 !text-sm md:hidden">
             Agent
           </a>
-          <a href="#copilot" className="btn-primary !px-4 !py-2 !text-sm">
-            Start an appeal
+          <a href="#copilot" className="btn-primary whitespace-nowrap !px-4 !py-2 !text-sm">
+            <span className="hidden sm:inline">Start an appeal</span>
+            <span className="sm:hidden">Try it</span>
           </a>
         </div>
       </div>
