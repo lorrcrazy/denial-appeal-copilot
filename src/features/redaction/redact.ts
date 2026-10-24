@@ -28,6 +28,10 @@ export const ENTITY_LABELS: Record<EntityType, string> = {
   AGE: 'Age',
 }
 
+const PLURALS: Partial<Record<EntityType, string>> = { DOB: 'Dates of birth', ADDRESS: 'Addresses', SSN: 'SSNs', EMAIL: 'Emails' }
+
+export const entityLabel = (type: EntityType, n: number) => (n === 1 ? ENTITY_LABELS[type] : (PLURALS[type] ?? `${ENTITY_LABELS[type]}s`))
+
 const NAME = String.raw`[A-Z][a-z]+(?:[ '-][A-Z][a-z'-]+)+`
 const MONTH = String.raw`(?:January|February|March|April|May|June|July|August|September|October|November|December)`
 const NAME_LABELS = new RegExp(String.raw`(?:Member Name|Patient Name|Patient|Name|Dear)\s*:?[ \t]*(${NAME})`, 'g')

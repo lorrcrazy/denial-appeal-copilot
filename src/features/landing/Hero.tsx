@@ -32,7 +32,7 @@ function RedactionChip() {
   }, [])
   const [orig, ph] = SWAPS[i]
   return (
-    <div className="glass rounded-2xl p-4 shadow-2xl shadow-black/40">
+    <div className="rounded-2xl border border-white/10 bg-ink-950/75 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl">
       <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-brand-300">
         <Lock className="h-3.5 w-3.5" /> Redacting on your device
       </div>
@@ -123,12 +123,12 @@ export function Hero() {
           </div>
 
           <div className="absolute -right-3 top-[38%] w-56 animate-float-slow sm:-right-10">
-            <div className="glass rounded-2xl p-4 shadow-2xl shadow-black/40">
+            <div className="rounded-2xl border border-white/10 bg-ink-950/75 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl">
               <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-slate-300">
                 <span className="flex items-center gap-1.5">
                   <TrendingUp className="h-3.5 w-3.5 text-brand-300" /> Win rate
                 </span>
-                <span className="text-brand-300">citing evidence</span>
+                <span className="text-brand-300">by quarter</span>
               </div>
               <div className="mt-2 h-16">
                 <ResponsiveContainer width="100%" height="100%">
@@ -139,7 +139,7 @@ export function Hero() {
                         <stop offset="1" stopColor="#2DD4BF" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <Area type="monotone" dataKey="citedWinRate" stroke="#5EEAD4" strokeWidth={2} fill="url(#spark)" animationDuration={2200} connectNulls />
+                    <Area type="monotone" dataKey="winRate" stroke="#5EEAD4" strokeWidth={2} fill="url(#spark)" animationDuration={2200} connectNulls />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>

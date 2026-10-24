@@ -1,32 +1,86 @@
-# React + TypeScript + Vite
+# Denial Appeal Copilot
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Upload an insurance denial and the relevant records. Patient details are swapped for placeholders on the device, an LLM drafts an appeal that quotes the plan's own policy (every quote is checked against the uploaded documents), and real names are put back locally. Patients can then share an anonymized "Appeal Win" to help the next person.
 
-Currently, two official plugins are available:
+Hackathon prototype. **All letters, people, insurers, and Appeal Wins are synthetic.** Not legal or medical advice.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run it
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check + production build
+npm run lint       # oxlint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The demo works with no API key: appeal drafting falls back to a deterministic template that still cites real quotes from the documents.
+
+To use a real LLM, set `OPENAI_API_KEY` (optional `OPENAI_MODEL`, default `gpt-4o-mini`) in Vercel project settings. `/api/appeal` only ever receives redacted text. Locally, `vercel dev` runs the API; plain `npm run dev` uses the fallback.
+
+## Deploy
+
+vercel.com → Add New → Project → Import `lorrcrazy/denial-appeal-copilot` → Deploy. Every push to `main` auto-deploys. Keep `main` runnable.
+
+## Demo flow
+
+1. Copilot → pick a sample case → Analyze denial
+2. Watch the redaction (left: on device, right: what the LLM sees)
+3. Decoder: plain English, odds score, "people like you won with X"
+4. Appeal: click any quote to see it highlighted in the source document
+5. Deadlines → "Share the win" → watch the live redaction → Post anonymously
+
+## Structure
+
+One folder per feature. Each folder has pure logic (`*.ts`) plus its UI (`*.tsx`), so logic can be changed without touching layout.
+
+```
+api/appeal.ts                 Vercel serverless function (OpenAI, redacted input only)
+src/App.tsx                   Page composition + shared state (posted wins)
+src/features/
+  redaction/   redact.ts       Local PII detection, placeholder vault, restore, share-time anonymizer
+               RedactionView   Side-by-side animated redaction
+  decoder/     decode.ts       Denial reason, windows, evidence, odds estimate
+               DecoderPanel, OddsGauge
+  appeal/      draft.ts        Mock draft, API call, citation verification
+               AppealPanel     Draft + clickable verified citations
+  deadlines/   deadlines.ts    Timeline + .ics reminders
+               DeadlinePanel   Timeline, checklist, share CTA
+  community/   seed.ts         60 synthetic Appeal Win cards
+               stats.ts        Group stats (hidden under 5), quarter series
+               CommunitySection, WinCardView, ShareWinModal, Charts, LiveTicker
+  workspace/   useCase.ts      Runs redaction + decoding for a case
+               UploadPanel, Workspace (step flow)
+  landing/     Nav, Hero, HeroLines, Pipeline, Privacy, Footer
+src/data/      samples.ts (3 synthetic cases), credits.ts (photo credits)
+src/components Shared UI bits (AnimatedNumber, FlowConnector, ...)
+```
+
+## Who owns what
+
+Fill in names so turns don't collide:
+
+| Area | Folder | Owner |
+| --- | --- | --- |
+| Redaction / privacy | `src/features/redaction` | |
+| Decoder + odds | `src/features/decoder` | |
+| Appeal drafting + API | `src/features/appeal`, `api/` | |
+| Deadlines | `src/features/deadlines` | |
+| Appeal Wins community | `src/features/community` | |
+| Landing / design | `src/features/landing`, `src/index.css` | |
+
+## Privacy rules (enforced in code)
+
+- Names, IDs, DOBs, addresses, phones, emails, dates are replaced before any network call (`redaction/redact.ts`)
+- Shared wins: anonymous handle, dates → quarters, ages → ranges, clinicians → `[clinician]`, broad condition buckets
+- Community stats hidden for groups under 5 (`community/stats.ts`, `MIN_GROUP`)
+
+Regex redaction is a demo stand-in; a production version should use a proper PII model (e.g. Microsoft Presidio) on device.
+
+## Sources and credits
+
+- "Fewer than 1% of denied claims were appealed" and 56% of appeals upheld (44% overturned): [KFF, Claims Denials and Appeals in ACA Marketplace Plans in 2023](https://www.kff.org/private-insurance/claims-denials-and-appeals-in-aca-marketplace-plans-in-2023/)
+- Photos: Shixart1985 via Wikimedia Commons, CC BY 2.0 (full list in `src/data/credits.ts` and the site footer)
+
+## Roadmap
+
+Accounts, comments, moderation, PDF/OCR upload, on-device PII model, real insurer policy library.

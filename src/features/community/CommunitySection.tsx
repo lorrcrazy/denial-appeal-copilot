@@ -39,9 +39,9 @@ export function CommunitySection({ cards, onShare }: { cards: WinCard[]; onShare
       <div className="container-x relative">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeading eyebrow="Appeal Wins" title={<>What worked for <span className="font-serif font-normal italic text-gradient-dark">people like you</span></>} sub="Anonymized outcomes shared by patients. Filter to your plan and denial. Every win makes the copilot smarter." />
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <div className="flex min-w-0 max-w-full flex-col items-start gap-3 sm:flex-row sm:items-center">
             <LiveTicker cards={cards} />
-            <button onClick={onShare} className="btn-dark">
+            <button onClick={onShare} className="btn-dark whitespace-nowrap">
               <Plus className="h-4 w-4" /> Share a win
             </button>
           </div>

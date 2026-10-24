@@ -38,7 +38,7 @@ export function Pipeline() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative w-full max-w-xs rounded-3xl p-5 lg:max-w-none lg:flex-1 ${s.zone === 'cloud' ? 'border border-indigo-400/30 bg-indigo-500/10' : 'glass'}`}
+                className={`group relative w-full max-w-xs rounded-3xl p-5 lg:min-w-0 lg:max-w-none lg:flex-1 ${s.zone === 'cloud' ? 'border border-indigo-400/30 bg-indigo-500/10' : 'glass'}`}
               >
                 <div className="flex items-center justify-between">
                   <div className={`grid h-11 w-11 place-items-center rounded-2xl ${s.zone === 'cloud' ? 'bg-indigo-400/20 text-indigo-200' : 'bg-brand-400/15 text-brand-300'}`}>

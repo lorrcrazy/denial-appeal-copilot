@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, Cloud, Laptop, ShieldCheck } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { DOC_LABELS, type CaseDocs, type DocKind } from '../../lib/types'
-import { ENTITY_LABELS, type EntityType, type Span } from './redact'
+import { entityLabel, type EntityType, type Span } from './redact'
 
 interface Props {
   docs: CaseDocs
@@ -76,8 +76,7 @@ export function RedactionView({ docs, redacted, onNext }: Props) {
         <div className="flex flex-wrap gap-1.5">
           {counts.by.map(([type, n]) => (
             <span key={type} className="chip bg-brand-50 text-brand-700">
-              {n} {ENTITY_LABELS[type].toLowerCase()}
-              {n > 1 ? 's' : ''}
+              {n} {entityLabel(type, n).toLowerCase()}
             </span>
           ))}
         </div>

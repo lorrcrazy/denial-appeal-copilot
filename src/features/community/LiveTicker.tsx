@@ -13,7 +13,7 @@ export function LiveTicker({ cards }: { cards: WinCard[] }) {
   if (!wins.length) return null
   const c = wins[i % wins.length]
   return (
-    <div className="flex h-10 items-center gap-3 overflow-hidden rounded-full border border-slate-200 bg-white pl-3 pr-4 text-sm shadow-sm">
+    <div className="flex h-10 max-w-full items-center gap-3 overflow-hidden rounded-full border border-slate-200 bg-white pl-3 pr-4 text-sm shadow-sm">
       <span className="relative flex h-2.5 w-2.5">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
         <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
