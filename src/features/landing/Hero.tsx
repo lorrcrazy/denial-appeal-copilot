@@ -69,8 +69,8 @@ export function Hero() {
             <a href="#copilot" className="btn-primary !px-6 !py-3 !text-base">
               Try it with a sample letter <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#wins" className="btn-ghost !px-6 !py-3 !text-base">
-              Read other people's stories
+            <a href="#agent" className="btn-ghost !px-6 !py-3 !text-base">
+              Let the case agent do it
             </a>
           </motion.div>
           <p className="mt-6 text-sm text-ink-700/70">

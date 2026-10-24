@@ -23,9 +23,14 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a href="#copilot" className="btn-primary !px-4 !py-2 !text-sm">
-          Start an appeal
-        </a>
+        <div className="flex items-center gap-2">
+          <a href="#agent" className="btn-ghost !px-3 !py-2 !text-sm md:hidden">
+            Agent
+          </a>
+          <a href="#copilot" className="btn-primary !px-4 !py-2 !text-sm">
+            Start an appeal
+          </a>
+        </div>
       </div>
     </motion.header>
   )
