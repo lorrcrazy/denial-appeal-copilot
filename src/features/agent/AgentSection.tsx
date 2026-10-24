@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { AlertTriangle, Check, Cloud, Laptop, Loader2, Lock, Play, RotateCcw } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { SAMPLE_CASES } from '../../data/samples'
+import { useGuide } from '../../lib/guide'
 import { DOC_LABELS } from '../../lib/types'
 import type { WinCard } from '../community/seed'
 import { analyzeCase } from '../workspace/useCase'
@@ -50,6 +51,10 @@ export function AgentSection({ cards }: { cards: WinCard[] }) {
     setRunning(false)
     setSelected(0)
   }
+  useGuide((d) => {
+    const i = SAMPLE_CASES.findIndex((c) => c.id === d.sampleId)
+    if (d.section === 'agent' && i >= 0) pick(i)
+  })
   const approve = () => {
     setAuthorized(true)
     setSelected(done)

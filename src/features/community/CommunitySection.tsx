@@ -3,6 +3,7 @@ import { Filter, Lock, Plus, RotateCcw } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { AnimatedNumber } from '../../components/AnimatedNumber'
 import { SectionHeading } from '../../components/SectionHeading'
+import { useGuide } from '../../lib/guide'
 import { CONDITION_CATEGORIES, DENIAL_REASONS, INSURANCE_TYPES } from '../../lib/types'
 import { ReasonChart, WinRateChart } from './Charts'
 import { LiveTicker } from './LiveTicker'
@@ -24,6 +25,12 @@ const FILTERS: { key: keyof Filters; label: string; options: readonly string[] }
 export function CommunitySection({ cards, onShare }: { cards: WinCard[]; onShare: () => void }) {
   const [filters, setFilters] = useState<Filters>(EMPTY)
   const [limit, setLimit] = useState(9)
+  useGuide((d) => {
+    if (d.section === 'wins' && d.reason) {
+      setFilters({ ...EMPTY, reason: d.reason })
+      setLimit(9)
+    }
+  })
   const filtered = useMemo(() => cards.filter((c) => (Object.keys(filters) as (keyof Filters)[]).every((k) => !filters[k] || c[k] === filters[k])), [cards, filters])
   const stats = groupStats(filtered)
   const active = Object.values(filters).some(Boolean)

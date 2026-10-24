@@ -12,6 +12,7 @@ import { Pipeline } from './features/landing/Pipeline'
 import { Privacy } from './features/landing/Privacy'
 import { Workspace } from './features/workspace/Workspace'
 import { AgentSection } from './features/agent/AgentSection'
+import { GuideWidget } from './features/guide/GuideWidget'
 
 const STORAGE_KEY = 'appeal-wins:mine'
 
@@ -59,6 +60,7 @@ export default function App() {
         <Privacy />
       </main>
       <Footer />
+      <GuideWidget cards={[...mine, ...SEED_CARDS]} />
       <ShareWinModal prefill={prefill} onClose={() => setPrefill(null)} onPost={post} />
       <AnimatePresence>
         {toast && (

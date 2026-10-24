@@ -39,6 +39,7 @@ src/App.tsx                   Page composition + shared state (posted wins)
 src/features/
   agent/       agents.ts       8 helpers: intake, organizer, policy, evidence, drafter, tracker, submit (simulated), outcomes
                AgentSection    Step-by-step agent run with approval gate
+  guide/       GuideWidget     "June" chat bubble: asks name + issue, routes to sections (scripted, no API)
   redaction/   redact.ts       Local PII detection, placeholder vault, restore, share-time anonymizer
                RedactionView   Side-by-side animated redaction
   decoder/     decode.ts       Denial reason, windows, evidence, odds estimate
@@ -69,6 +70,7 @@ Fill in names so turns don't collide:
 | Deadlines | `src/features/deadlines` | |
 | Appeal Wins community | `src/features/community` | |
 | Case agent (8-step workflow) | `src/features/agent` | |
+| Chat guide (June) | `src/features/guide`, `src/lib/guide.ts` | |
 | Landing / design | `src/features/landing`, `src/index.css` | |
 
 ## Privacy rules (enforced in code)

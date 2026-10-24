@@ -2,7 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Check, FileUp, Gavel, ScanText, ShieldCheck, CalendarClock } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { SectionHeading } from '../../components/SectionHeading'
-import type { SampleCase } from '../../data/samples'
+import { SAMPLE_CASES, type SampleCase } from '../../data/samples'
+import { useGuide } from '../../lib/guide'
 import type { CaseDocs } from '../../lib/types'
 import { AppealPanel } from '../appeal/AppealPanel'
 import type { WinCard } from '../community/seed'
@@ -47,6 +48,11 @@ export function Workspace({ cards, onShare }: { cards: WinCard[]; onShare: (p: S
     setMaxStep(1)
     go(1)
   }
+
+  useGuide((d) => {
+    const s = d.section === 'copilot' ? SAMPLE_CASES.find((c) => c.id === d.sampleId) : undefined
+    if (s) analyze(s.docs, s)
+  })
 
   const insight = useMemo(() => (state ? peopleLikeYou(cards, state.decoded.reason, state.insuranceType) : null), [cards, state])
   const odds = useMemo(() => (state ? estimateOdds(state.decoded, insight?.stats.winRate ?? null) : null), [state, insight])
