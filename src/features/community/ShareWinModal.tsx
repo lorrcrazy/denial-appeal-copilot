@@ -87,13 +87,13 @@ function ShareWinDialog({ prefill, onClose, onPost }: { prefill: SharePrefill; o
     <>
       {(
         <motion.div className="fixed inset-0 z-[60] flex items-end justify-center bg-ink-950/60 p-0 backdrop-blur-sm sm:items-center sm:p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
-          <motion.div onClick={(e) => e.stopPropagation()} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} className="scrollbar-thin max-h-[92vh] w-full max-w-5xl overflow-auto rounded-t-3xl bg-white sm:rounded-3xl">
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white/90 px-5 py-4 backdrop-blur sm:px-7">
+          <motion.div onClick={(e) => e.stopPropagation()} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} className="scrollbar-thin max-h-[92vh] w-full max-w-5xl overflow-auto rounded-t-3xl bg-white sm:rounded-2xl">
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-stone-100 bg-white/90 px-5 py-4 backdrop-blur sm:px-7">
               <div>
                 <h3 className="text-lg font-bold">Share your Appeal Win</h3>
-                <p className="text-xs text-slate-500">Watch it get anonymized as you type.</p>
+                <p className="text-xs text-stone-500">Watch it get anonymized as you type.</p>
               </div>
-              <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-slate-100" aria-label="Close">
+              <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-stone-100" aria-label="Close">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -110,7 +110,7 @@ function ShareWinDialog({ prefill, onClose, onPost }: { prefill: SharePrefill; o
                 </div>
                 <Select label="What worked" value={form.tactic} options={[...new Set([form.tactic, ...Object.values(TACTICS).flat().map((t) => t.tactic)])]} onChange={(v) => set('tactic', v)} />
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-500">Your story (in your own words)</label>
+                  <label className="mb-1 block text-xs font-medium text-stone-500">Your story (in your own words)</label>
                   <textarea
                     value={story}
                     onChange={(e) => {
@@ -121,19 +121,19 @@ function ShareWinDialog({ prefill, onClose, onPost }: { prefill: SharePrefill; o
                     className="field resize-none"
                   />
                 </div>
-                <div className="rounded-2xl bg-slate-50 p-3 text-[13px] leading-relaxed text-slate-600">
-                  <p className="mb-1 text-xs font-semibold text-slate-400">Live redaction</p>
+                <div className="rounded-2xl bg-stone-50 p-3 text-[13px] leading-relaxed text-stone-600">
+                  <p className="mb-1 text-xs font-semibold text-stone-400">Live redaction</p>
                   <RedactedText story={story} spans={spans} />
                 </div>
               </div>
 
               <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Public preview</p>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-400">Public preview</p>
                 <WinCardView card={preview} />
                 <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {checks.map(([label, ok]) => (
-                    <li key={label} className={`flex items-center gap-2 text-xs ${ok ? 'text-slate-700' : 'text-slate-400'}`}>
-                      <span className={`grid h-4 w-4 place-items-center rounded-full ${ok ? 'bg-emerald-500 text-white' : 'bg-slate-200'}`}>{ok && <Check className="h-3 w-3" />}</span>
+                    <li key={label} className={`flex items-center gap-2 text-xs ${ok ? 'text-stone-700' : 'text-stone-400'}`}>
+                      <span className={`grid h-4 w-4 place-items-center rounded-full ${ok ? 'bg-emerald-500 text-white' : 'bg-stone-200'}`}>{ok && <Check className="h-3 w-3" />}</span>
                       {label}
                     </li>
                   ))}
@@ -141,7 +141,7 @@ function ShareWinDialog({ prefill, onClose, onPost }: { prefill: SharePrefill; o
                 <button onClick={() => onPost({ ...preview, id: `mine-${Date.now()}`, story: text })} disabled={!text.trim()} className="btn-primary mt-6 w-full !py-3">
                   <ShieldCheck className="h-4 w-4" /> Post anonymously
                 </button>
-                <p className="mt-2 text-center text-[11px] text-slate-400">Demo: saved only in this browser.</p>
+                <p className="mt-2 text-center text-[11px] text-stone-400">Demo: saved only in this browser.</p>
               </div>
             </div>
           </motion.div>
@@ -165,13 +165,13 @@ function RedactedText({ story, spans }: { story: string; spans: ReturnType<typeo
     i = s.end
   })
   parts.push(story.slice(i))
-  return <p>{story ? parts : <span className="text-slate-400">Start typing…</span>}</p>
+  return <p>{story ? parts : <span className="text-stone-400">Start typing…</span>}</p>
 }
 
 function Select<T extends string>({ label, value, options, onChange }: { label: string; value: T; options: readonly T[]; onChange: (v: T) => void }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-stone-500">{label}</span>
       <select value={value} onChange={(e) => onChange(e.target.value as T)} className="field">
         {options.map((o) => (
           <option key={o}>{o}</option>

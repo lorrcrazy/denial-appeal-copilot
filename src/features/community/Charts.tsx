@@ -4,7 +4,7 @@ import { Area, Bar, BarChart, CartesianGrid, Cell, ComposedChart, ResponsiveCont
 import type { WinCard } from './seed'
 import { quarterSeries, reasonBreakdown } from './stats'
 
-const tooltipStyle = { borderRadius: 12, border: '1px solid #E2E8F0', boxShadow: '0 8px 24px -8px rgba(15,23,42,.2)', fontSize: 12 }
+const tooltipStyle = { borderRadius: 12, border: '1px solid #DEDEDB', boxShadow: '0 8px 24px -8px rgba(15,23,42,.2)', fontSize: 12 }
 
 export function WinRateChart({ cards }: { cards: WinCard[] }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -17,22 +17,22 @@ export function WinRateChart({ cards }: { cards: WinCard[] }) {
           <ComposedChart data={data} margin={{ top: 10, right: 8, bottom: 0, left: -18 }}>
             <defs>
               <linearGradient id="gAll" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#818CF8" stopOpacity={0.35} />
-                <stop offset="1" stopColor="#818CF8" stopOpacity={0} />
+                <stop offset="0" stopColor="#9AA6A6" stopOpacity={0.35} />
+                <stop offset="1" stopColor="#9AA6A6" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="gCited" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stopColor="#14B8A6" stopOpacity={0.45} />
-                <stop offset="1" stopColor="#14B8A6" stopOpacity={0} />
+                <stop offset="0" stopColor="#C4603F" stopOpacity={0.45} />
+                <stop offset="1" stopColor="#C4603F" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} stroke="#F1F5F9" />
-            <XAxis dataKey="quarter" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: '#94A3B8' }} />
-            <YAxis yAxisId="r" domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: '#94A3B8' }} unit="%" />
+            <CartesianGrid vertical={false} stroke="#ECECEA" />
+            <XAxis dataKey="quarter" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: '#55555B' }} />
+            <YAxis yAxisId="r" domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: '#55555B' }} unit="%" />
             <YAxis yAxisId="n" orientation="right" hide />
             <Tooltip contentStyle={tooltipStyle} formatter={(v, name) => (name === 'shared' ? [v, 'Cards shared'] : [`${v}%`, name === 'winRate' ? 'All appeals' : 'Cited policy or evidence'])} />
-            <Bar yAxisId="n" dataKey="shared" fill="#E2E8F0" radius={[6, 6, 0, 0]} barSize={18} animationDuration={1200} />
-            <Area yAxisId="r" type="monotone" dataKey="winRate" stroke="#818CF8" strokeWidth={2.5} fill="url(#gAll)" connectNulls animationDuration={1800} dot={false} />
-            <Area yAxisId="r" type="monotone" dataKey="citedWinRate" stroke="#14B8A6" strokeWidth={2.5} fill="url(#gCited)" connectNulls animationDuration={2200} dot={{ r: 3, fill: '#14B8A6', strokeWidth: 0 }} />
+            <Bar yAxisId="n" dataKey="shared" fill="#DEDEDB" radius={[6, 6, 0, 0]} barSize={18} animationDuration={1200} />
+            <Area yAxisId="r" type="monotone" dataKey="winRate" stroke="#9AA6A6" strokeWidth={2.5} fill="url(#gAll)" connectNulls animationDuration={1800} dot={false} />
+            <Area yAxisId="r" type="monotone" dataKey="citedWinRate" stroke="#C4603F" strokeWidth={2.5} fill="url(#gCited)" connectNulls animationDuration={2200} dot={{ r: 3, fill: '#C4603F', strokeWidth: 0 }} />
           </ComposedChart>
         </ResponsiveContainer>
       )}
@@ -40,7 +40,7 @@ export function WinRateChart({ cards }: { cards: WinCard[] }) {
   )
 }
 
-const BAR_COLORS = ['#14B8A6', '#2DD4BF', '#38BDF8', '#60A5FA', '#818CF8', '#A78BFA', '#C4B5FD']
+const BAR_COLORS = ['#C4603F', '#3C4748', '#525F60', '#6F7D7D', '#9AA6A6', '#B5BDBD', '#C9C9C5']
 
 export function ReasonChart({ cards }: { cards: WinCard[] }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -53,7 +53,7 @@ export function ReasonChart({ cards }: { cards: WinCard[] }) {
           <BarChart data={data} layout="vertical" margin={{ top: 0, right: 30, bottom: 0, left: 0 }}>
             <XAxis type="number" domain={[0, 100]} hide />
             <YAxis type="category" dataKey="reason" width={128} tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: '#475569' }} />
-            <Tooltip cursor={{ fill: '#F8FAFC' }} contentStyle={tooltipStyle} formatter={(v, _n, item) => [`${v}% won (n=${(item?.payload as { n?: number } | undefined)?.n ?? '?'})`, 'Win rate']} />
+            <Tooltip cursor={{ fill: '#F6F6F5' }} contentStyle={tooltipStyle} formatter={(v, _n, item) => [`${v}% won (n=${(item?.payload as { n?: number } | undefined)?.n ?? '?'})`, 'Win rate']} />
             <Bar dataKey="winRate" radius={[0, 8, 8, 0]} barSize={16} animationDuration={1400} label={{ position: 'right', fontSize: 11, fill: '#64748B', formatter: (v: unknown) => `${v}%` }}>
               {data.map((d, i) => (
                 <Cell key={d.reason} fill={BAR_COLORS[i % BAR_COLORS.length]} />

@@ -37,6 +37,8 @@ One folder per feature. Each folder has pure logic (`*.ts`) plus its UI (`*.tsx`
 api/appeal.ts                 Vercel serverless function (OpenAI, redacted input only)
 src/App.tsx                   Page composition + shared state (posted wins)
 src/features/
+  agent/       agents.ts       8 helpers: intake, organizer, policy, evidence, drafter, tracker, submit (simulated), outcomes
+               AgentSection    Step-by-step agent run with approval gate
   redaction/   redact.ts       Local PII detection, placeholder vault, restore, share-time anonymizer
                RedactionView   Side-by-side animated redaction
   decoder/     decode.ts       Denial reason, windows, evidence, odds estimate
@@ -66,6 +68,7 @@ Fill in names so turns don't collide:
 | Appeal drafting + API | `src/features/appeal`, `api/` | |
 | Deadlines | `src/features/deadlines` | |
 | Appeal Wins community | `src/features/community` | |
+| Case agent (8-step workflow) | `src/features/agent` | |
 | Landing / design | `src/features/landing`, `src/index.css` | |
 
 ## Privacy rules (enforced in code)
@@ -79,7 +82,7 @@ Regex redaction is a demo stand-in; a production version should use a proper PII
 ## Sources and credits
 
 - "Fewer than 1% of denied claims were appealed" and 56% of appeals upheld (44% overturned): [KFF, Claims Denials and Appeals in ACA Marketplace Plans in 2023](https://www.kff.org/private-insurance/claims-denials-and-appeals-in-aca-marketplace-plans-in-2023/)
-- Photos: Shixart1985 via Wikimedia Commons, CC BY 2.0 (full list in `src/data/credits.ts` and the site footer)
+- Photos: Flickr, CC BY / CC BY-SA 2.0 (authors and links in `src/data/credits.ts` and the site footer)
 
 ## Roadmap
 

@@ -11,6 +11,7 @@ import { Nav } from './features/landing/Nav'
 import { Pipeline } from './features/landing/Pipeline'
 import { Privacy } from './features/landing/Privacy'
 import { Workspace } from './features/workspace/Workspace'
+import { AgentSection } from './features/agent/AgentSection'
 
 const STORAGE_KEY = 'appeal-wins:mine'
 
@@ -53,6 +54,7 @@ export default function App() {
         <Hero />
         <Pipeline />
         <Workspace cards={[...mine, ...SEED_CARDS]} onShare={setPrefill} />
+        <AgentSection cards={[...mine, ...SEED_CARDS]} />
         <CommunitySection cards={[...mine, ...SEED_CARDS]} onShare={() => setPrefill(EMPTY_PREFILL)} />
         <Privacy />
       </main>
@@ -61,7 +63,7 @@ export default function App() {
       <AnimatePresence>
         {toast && (
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 30 }} className="fixed bottom-6 left-1/2 z-[70] flex -translate-x-1/2 items-center gap-2 rounded-full bg-ink-950 px-5 py-3 text-sm font-medium text-white shadow-2xl">
-            <BadgeCheck className="h-4 w-4 text-emerald-400" /> Posted anonymously. Thanks for helping the next person.
+            <BadgeCheck className="h-4 w-4 text-marker" /> Posted anonymously. Thanks for helping the next person.
           </motion.div>
         )}
       </AnimatePresence>

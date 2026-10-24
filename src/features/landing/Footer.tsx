@@ -1,37 +1,31 @@
 import { Logo } from '../../components/Logo'
-import { KFF, PHOTO_AUTHOR, PHOTO_CREDITS, PHOTO_LICENSE } from '../../data/credits'
+import { KFF, PHOTO_CREDITS } from '../../data/credits'
 
 export function Footer() {
   return (
-    <footer className="bg-ink-950 py-14 text-slate-400">
+    <footer className="border-t border-paper-200 bg-paper-100 py-14 text-ink-700">
       <div className="container-x grid gap-10 md:grid-cols-[1.2fr_1fr]">
         <div>
-          <Logo dark />
-          <p className="mt-4 max-w-md text-sm">
-            A hackathon prototype. Not legal or medical advice. Every letter, person, insurer, and Appeal Win in this demo is synthetic.
-          </p>
-          <p className="mt-4 text-xs">
-            Appeal statistics:{' '}
-            <a className="underline underline-offset-2 hover:text-white" href={KFF.url} target="_blank" rel="noreferrer">
+          <Logo />
+          <p className="mt-4 max-w-md text-[15px]">Made at a hackathon by students who've watched people they love fight these letters. Not legal or medical advice. Every letter, person, and story here is made up.</p>
+          <p className="mt-4 text-sm">
+            Appeal numbers:{' '}
+            <a className="underline underline-offset-2 hover:text-ink-950" href={KFF.url} target="_blank" rel="noreferrer">
               {KFF.label}
             </a>
-            .
           </p>
         </div>
-        <div className="text-xs">
-          <p className="font-semibold text-slate-300">Photo credits</p>
-          <p className="mt-2">
-            Photos by {PHOTO_AUTHOR} via Wikimedia Commons,{' '}
-            <a className="underline underline-offset-2 hover:text-white" href={PHOTO_LICENSE.url} target="_blank" rel="noreferrer">
-              {PHOTO_LICENSE.name}
-            </a>
-            :
-          </p>
+        <div className="text-sm">
+          <p className="font-bold text-ink-900">Photo credits</p>
           <ul className="mt-2 space-y-1">
             {PHOTO_CREDITS.map((c) => (
               <li key={c.file}>
-                <a className="hover:text-white" href={c.url} target="_blank" rel="noreferrer">
+                <a className="hover:text-ink-950 hover:underline" href={c.url} target="_blank" rel="noreferrer">
                   {c.title}
+                </a>{' '}
+                by {c.author},{' '}
+                <a className="underline underline-offset-2" href={c.licenseUrl} target="_blank" rel="noreferrer">
+                  {c.license}
                 </a>
               </li>
             ))}

@@ -1,67 +1,50 @@
 import { motion } from 'framer-motion'
-import { BadgeCheck, Cloud, FileText, ShieldCheck, UserCheck } from 'lucide-react'
-import { Fragment } from 'react'
-import { FlowConnector } from '../../components/FlowConnector'
-import { SectionHeading } from '../../components/SectionHeading'
 
 const STEPS = [
-  { icon: FileText, title: 'Upload', body: 'Denial letter, records, plan policy.', sample: 'Jordan Rivera, ID PHP-883-20417', zone: 'device' },
-  { icon: ShieldCheck, title: 'Redact locally', body: 'Names, IDs, dates swapped for placeholders.', sample: '[PATIENT_1], ID [ID_1]', zone: 'device' },
-  { icon: Cloud, title: 'LLM drafts', body: 'Cloud model only ever sees placeholders.', sample: '"…per Section 3.2…"', zone: 'cloud' },
-  { icon: BadgeCheck, title: 'Verify quotes', body: 'Every citation matched to your documents.', sample: '4 / 4 quotes verified', zone: 'device' },
-  { icon: UserCheck, title: 'Restore names', body: 'Real details put back on your device.', sample: 'Jordan Rivera, ID PHP-883-20417', zone: 'device' },
-] as const
+  { title: 'Add your letter', body: 'Paste or upload the denial, your doctor\'s notes, and the plan policy if you have it.', note: 'Jordan Rivera, ID PHP-883-20417' },
+  { title: 'We hide your details', body: 'Names, member IDs, birthdays and addresses are swapped for placeholders right in your browser.', note: '[PATIENT_1], ID [ID_1]' },
+  { title: 'The draft gets written', body: 'An AI writer only ever sees the placeholders. It has to quote your documents word for word.', note: '"…per Section 5.1…"' },
+  { title: 'We check every quote', body: 'Each quote is matched against what you uploaded. If it isn\'t in your papers, it doesn\'t go in the letter.', note: '4 of 4 quotes found' },
+  { title: 'Your name goes back in', body: 'Real details are filled back in on your device. You read it, edit it, and send it.', note: 'Jordan Rivera, ID PHP-883-20417' },
+]
 
 export function Pipeline() {
   return (
-    <section id="how" className="relative overflow-hidden bg-ink-950 py-24 text-white sm:py-28">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-      <div className="absolute left-1/2 top-1/2 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[120px]" />
-      <div className="container-x relative">
-        <SectionHeading
-          dark
-          center
-          eyebrow="How it works"
-          title={
-            <>
-              Your data takes the <span className="font-serif font-normal italic text-gradient">scenic route</span>
-            </>
-          }
-          sub="Personal details are stripped before anything leaves your browser, and put back only after the draft comes home."
-        />
+    <section id="how" className="relative border-y border-paper-200 bg-paper-100 py-24 sm:py-28">
+      <div className="container-x">
+        <div className="max-w-2xl">
+          <p className="eyebrow">how it works</p>
+          <h2 className="mt-1 font-serif text-[34px] font-medium leading-[1.1] tracking-tight sm:text-[44px]">Five steps, and your name stays with you the whole way</h2>
+        </div>
 
-        <div className="mt-16 flex flex-col items-center lg:flex-row lg:items-stretch">
-          {STEPS.map((s, i) => (
-            <Fragment key={s.title}>
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative w-full max-w-xs rounded-3xl p-5 lg:min-w-0 lg:max-w-none lg:flex-1 ${s.zone === 'cloud' ? 'border border-indigo-400/30 bg-indigo-500/10' : 'glass'}`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className={`grid h-11 w-11 place-items-center rounded-2xl ${s.zone === 'cloud' ? 'bg-indigo-400/20 text-indigo-200' : 'bg-brand-400/15 text-brand-300'}`}>
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <span className={`chip ${s.zone === 'cloud' ? 'bg-indigo-400/15 text-indigo-200' : 'bg-white/5 text-slate-300'}`}>{s.zone === 'cloud' ? 'Cloud' : 'On device'}</span>
+        <div className="relative mt-14">
+          <svg className="pointer-events-none absolute left-[20px] top-0 hidden h-10 w-[80%] lg:block" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden>
+            <motion.path
+              d="M 0 20 C 60 4, 120 36, 250 20 S 420 6, 500 20 S 680 34, 750 20 S 900 8, 1000 20"
+              fill="none"
+              stroke="#C4603F"
+              strokeWidth="2"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2.2, ease: 'easeInOut' }}
+            />
+          </svg>
+          <ol className="relative grid gap-10 lg:grid-cols-5 lg:gap-6">
+            {STEPS.map((s, i) => (
+              <motion.li key={s.title} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-60px' }} transition={{ delay: 0.25 + i * 0.25, duration: 0.5 }} className="relative flex gap-4 lg:block">
+                <span className={`relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 font-serif text-lg font-semibold ${i === 2 ? 'border-clay-500 bg-clay-50 text-clay-700' : 'border-brand-600 bg-paper-50 text-brand-700'}`}>{i + 1}</span>
+                <div className="lg:mt-5">
+                  <p className="font-hand text-lg leading-none text-ink-700/70">{i === 2 ? 'in the cloud' : 'on your computer'}</p>
+                  <h3 className="mt-1 text-lg font-bold">{s.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-700">{s.body}</p>
+                  <p className="mt-3 inline-block border-l-2 border-clay-300 pl-2.5 font-mono text-xs text-ink-800">{s.note}</p>
                 </div>
-                <h3 className="mt-4 font-semibold">{s.title}</h3>
-                <p className="mt-1 text-sm text-slate-400">{s.body}</p>
-                <div className="mt-4 truncate rounded-xl bg-black/30 px-3 py-2 font-mono text-[11px] text-brand-200">{s.sample}</div>
-              </motion.div>
-              {i < STEPS.length - 1 && (
-                <div className="flex shrink-0 items-center justify-center lg:w-10">
-                  <div className="lg:hidden">
-                    <FlowConnector vertical delay={i * 0.3} />
-                  </div>
-                  <div className="hidden w-full lg:block">
-                    <FlowConnector delay={i * 0.3} />
-                  </div>
-                </div>
-              )}
-            </Fragment>
-          ))}
+              </motion.li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

@@ -66,28 +66,28 @@ export function Workspace({ cards, onShare }: { cards: WinCard[]; onShare: (p: S
   }
 
   return (
-    <section id="copilot" className="relative bg-slate-50 py-24 sm:py-28">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink-950/[0.04] to-transparent" />
+    <section id="copilot" className="relative bg-paper-50 py-24 sm:py-28">
+      
       <div className="container-x relative">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-          <SectionHeading eyebrow="The copilot" title="From denial letter to cited appeal in under a minute" sub="Pick a sample case and watch every step happen. Nothing here touches real patient data." />
-          <div className="hidden overflow-hidden rounded-3xl shadow-xl lg:block">
-            <img src="/img/xray.webp" alt="Clinician reviewing a chest X-ray" loading="lazy" className="h-36 w-64 object-cover" />
+          <SectionHeading eyebrow="try it" title="Go from a confusing letter to a real appeal" sub="Pick one of our made-up sample letters and walk through it step by step. No real patient data, nothing to sign up for." />
+          <div className="hidden overflow-hidden rounded-2xl shadow-xl lg:block">
+            <img src="/img/workspace.webp" alt="A patient talking with his doctor" loading="lazy" className="h-36 w-64 object-cover" />
           </div>
         </div>
 
         <div id="copilot-card" className="card mt-10 scroll-mt-24 overflow-hidden">
-          <div className="border-b border-slate-100 bg-white/80 px-3 py-3 sm:px-6">
+          <div className="border-b border-stone-100 bg-white/80 px-3 py-3 sm:px-6">
             <ol className="relative flex items-center justify-between">
-              <div className="absolute left-5 right-5 top-1/2 h-0.5 -translate-y-1/2 rounded bg-slate-100 sm:left-8 sm:right-8" />
-              <motion.div className="absolute left-5 top-1/2 h-0.5 -translate-y-1/2 rounded bg-gradient-to-r from-brand-400 to-sky-500 sm:left-8" animate={{ width: `calc(${(maxStep / (STEPS.length - 1)) * 100}% - ${maxStep === 0 ? 0 : 40}px)` }} transition={{ duration: 0.6 }} />
+              <div className="absolute left-5 right-5 top-1/2 h-0.5 -translate-y-1/2 rounded bg-stone-100 sm:left-8 sm:right-8" />
+              <motion.div className="absolute left-5 top-1/2 h-0.5 -translate-y-1/2 rounded bg-brand-500 sm:left-8" animate={{ width: `calc(${(maxStep / (STEPS.length - 1)) * 100}% - ${maxStep === 0 ? 0 : 40}px)` }} transition={{ duration: 0.6 }} />
               {STEPS.map((s, i) => {
                 const unlocked = i <= maxStep && (i === 0 || state)
                 const current = i === step
                 return (
                   <li key={s.label} className="relative z-10">
-                    <button disabled={!unlocked} onClick={() => go(i)} className={`flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-1.5 text-sm font-medium transition sm:pr-4 ${current ? 'bg-ink-950 text-white shadow-lg' : unlocked ? 'bg-white text-slate-700 ring-1 ring-slate-200 hover:ring-slate-300' : 'bg-white text-slate-300 ring-1 ring-slate-100'}`}>
-                      <span className={`grid h-7 w-7 place-items-center rounded-full ${current ? 'bg-brand-500' : unlocked ? 'bg-brand-50 text-brand-600' : 'bg-slate-50'}`}>{unlocked && i < maxStep && !current ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}</span>
+                    <button disabled={!unlocked} onClick={() => go(i)} className={`flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-1.5 text-sm font-medium transition sm:pr-4 ${current ? 'bg-ink-950 text-white shadow-lg' : unlocked ? 'bg-white text-stone-700 ring-1 ring-stone-200 hover:ring-stone-300' : 'bg-white text-stone-300 ring-1 ring-stone-100'}`}>
+                      <span className={`grid h-7 w-7 place-items-center rounded-full ${current ? 'bg-brand-500' : unlocked ? 'bg-brand-50 text-brand-600' : 'bg-stone-50'}`}>{unlocked && i < maxStep && !current ? <Check className="h-3.5 w-3.5" /> : <s.icon className="h-3.5 w-3.5" />}</span>
                       <span className="hidden sm:inline">{s.label}</span>
                     </button>
                   </li>

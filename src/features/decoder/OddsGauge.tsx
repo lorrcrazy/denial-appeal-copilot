@@ -9,12 +9,12 @@ export function OddsGauge({ score }: { score: number }) {
       <svg viewBox="0 0 200 116" className="w-full">
         <defs>
           <linearGradient id="gauge" x1="0" x2="1">
-            <stop offset="0" stopColor="#F59E0B" />
-            <stop offset=".5" stopColor="#2DD4BF" />
-            <stop offset="1" stopColor="#6366F1" />
+            <stop offset="0" stopColor="#C9C9C5" />
+            <stop offset=".5" stopColor="#6F7D7D" />
+            <stop offset="1" stopColor="#2C3536" />
           </linearGradient>
         </defs>
-        <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#E2E8F0" strokeWidth="14" strokeLinecap="round" />
+        <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#ECECEA" strokeWidth="14" strokeLinecap="round" />
         <motion.path
           d="M20 100 A80 80 0 0 1 180 100"
           fill="none"

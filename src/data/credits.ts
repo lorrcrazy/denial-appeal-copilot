@@ -1,13 +1,12 @@
+const BY = 'https://creativecommons.org/licenses/by/2.0/'
+const BY_SA = 'https://creativecommons.org/licenses/by-sa/2.0/'
+
 export const PHOTO_CREDITS = [
-  { file: 'doctor-laptop', title: 'Female doctor in blue uniform working on laptop closeup', url: 'https://commons.wikimedia.org/wiki/File:Female_doctor_in_blue_uniform_working_on_laptop_closeup.jpg' },
-  { file: 'stethoscope', title: 'Young female doctor showing stethoscope closeup', url: 'https://commons.wikimedia.org/wiki/File:Young_female_doctor_showing_stethoscope_closeup.jpg' },
-  { file: 'xray', title: 'Medical professional examines chest X-ray in a hospital setting', url: 'https://commons.wikimedia.org/wiki/File:Medical_professional_examines_chest_X-ray_in_a_hospital_setting.jpg' },
-  { file: 'notes', title: 'Female doctor in uniform taking notes and holding smartphone', url: 'https://commons.wikimedia.org/wiki/File:Female_doctor_in_uniform_taking_notes_and_holding_smartphone.jpg' },
-  { file: 'exam-room', title: 'Modern medical examination room', url: 'https://commons.wikimedia.org/wiki/File:Modern_medical_examination_room.jpg' },
-  { file: 'listening', title: 'Female doctor listens to the patient using a stethoscope closeup', url: 'https://commons.wikimedia.org/wiki/File:Female_doctor_listens_to_the_patient_using_a_stethoscope_closeup.jpg' },
+  { file: 'hero', title: 'Grandmother Granddaughter', author: 'WabbitWanderer', url: 'https://www.flickr.com/photos/44251652@N08/5296306923', license: 'CC BY-SA 2.0', licenseUrl: BY_SA },
+  { file: 'workspace', title: 'Patient Talking With Doctor', author: 'NIH Clinical Center', url: 'https://www.flickr.com/photos/46300592@N02/27220715681', license: 'CC BY 2.0', licenseUrl: BY },
+  { file: 'packet', title: '4 generations', author: 'Scrap Pile', url: 'https://www.flickr.com/photos/12376942@N08/9506735522', license: 'CC BY 2.0', licenseUrl: BY },
+  { file: 'privacy', title: 'Affectionate elderly couple hugs on the porch', author: 'simpleinsomnia', url: 'https://www.flickr.com/photos/95329455@N02/10608704843', license: 'CC BY 2.0', licenseUrl: BY },
 ]
-export const PHOTO_AUTHOR = 'Shixart1985'
-export const PHOTO_LICENSE = { name: 'CC BY 2.0', url: 'https://creativecommons.org/licenses/by/2.0/' }
 
 export const KFF = {
   url: 'https://www.kff.org/private-insurance/claims-denials-and-appeals-in-aca-marketplace-plans-in-2023/',

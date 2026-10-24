@@ -15,8 +15,8 @@ const STAGES = [
 
 const DOC_COLORS: Record<DocKind, string> = {
   denial: 'bg-rose-50 text-rose-700 ring-rose-200',
-  records: 'bg-sky-50 text-sky-700 ring-sky-200',
-  policy: 'bg-violet-50 text-violet-700 ring-violet-200',
+  records: 'bg-amber-50 text-amber-700 ring-amber-200',
+  policy: 'bg-clay-50 text-clay-700 ring-clay-200',
 }
 
 export function AppealPanel({ state, communityTactic, onNext }: { state: CaseState; communityTactic: string | null; onNext: () => void }) {
@@ -97,8 +97,8 @@ export function AppealPanel({ state, communityTactic, onNext }: { state: CaseSta
           {STAGES.map((s, i) => {
             const status = i < stage ? 'done' : i === stage ? 'active' : 'todo'
             return (
-              <motion.div key={s.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: status === 'todo' ? 0.4 : 1, x: 0 }} transition={{ delay: i * 0.08 }} className={`flex items-center gap-3 rounded-2xl border p-4 ${status === 'active' ? 'border-brand-300 bg-brand-50/60' : 'border-slate-200'}`}>
-                <div className={`grid h-9 w-9 place-items-center rounded-xl ${status === 'done' ? 'bg-emerald-500 text-white' : status === 'active' ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-400'}`}>
+              <motion.div key={s.label} initial={{ opacity: 0, x: -12 }} animate={{ opacity: status === 'todo' ? 0.4 : 1, x: 0 }} transition={{ delay: i * 0.08 }} className={`flex items-center gap-3 rounded-2xl border p-4 ${status === 'active' ? 'border-brand-300 bg-brand-50/60' : 'border-stone-200'}`}>
+                <div className={`grid h-9 w-9 place-items-center rounded-xl ${status === 'done' ? 'bg-emerald-500 text-white' : status === 'active' ? 'bg-brand-500 text-white' : 'bg-stone-100 text-stone-400'}`}>
                   {status === 'done' ? <Check className="h-4 w-4" /> : status === 'active' ? <Loader2 className="h-4 w-4 animate-spin" /> : <s.icon className="h-4 w-4" />}
                 </div>
                 <span className="text-sm font-medium">{s.label}</span>
@@ -118,7 +118,7 @@ export function AppealPanel({ state, communityTactic, onNext }: { state: CaseSta
             {verifiedCount === allCites.length ? <BadgeCheck className="h-3.5 w-3.5" /> : <ShieldAlert className="h-3.5 w-3.5" />}
             {verifiedCount}/{allCites.length} quotes verified
           </span>
-          <span className="chip bg-slate-100 text-slate-600">
+          <span className="chip bg-stone-100 text-stone-600">
             <Sparkles className="h-3.5 w-3.5" /> {draft.source === 'llm' ? 'Drafted by cloud LLM' : 'Demo mode: template draft (no API key)'}
           </span>
         </div>
@@ -137,10 +137,10 @@ export function AppealPanel({ state, communityTactic, onNext }: { state: CaseSta
       </div>
 
       <div className="mt-4 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
-        <div className="scrollbar-thin max-h-[560px] overflow-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-inner shadow-slate-100 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Subject</p>
+        <div className="scrollbar-thin max-h-[560px] overflow-auto rounded-2xl border border-stone-200 bg-white p-5 shadow-inner shadow-stone-100 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">Subject</p>
           <h3 className="mt-1 font-semibold">{show(draft.subject)}</h3>
-          <div className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-slate-700">
+          <div className="mt-5 space-y-4 text-[14.5px] leading-relaxed text-stone-700">
             {draft.paragraphs.map((p, pi) => (
               <motion.div key={pi} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: pi * 0.12 }}>
                 <p className="whitespace-pre-line">{show(p.text)}</p>
@@ -149,8 +149,8 @@ export function AppealPanel({ state, communityTactic, onNext }: { state: CaseSta
                     {p.citations.map((c, ci) => {
                       const isActive = active?.p === pi && active.c === ci
                       return (
-                        <button key={ci} onClick={() => setActive({ p: pi, c: ci })} className={`block w-full rounded-xl border-l-4 px-3 py-2 text-left text-[13px] transition ${isActive ? 'border-brand-500 bg-brand-50' : 'border-slate-200 bg-slate-50 hover:bg-slate-100'}`}>
-                          <span className="italic text-slate-600">“{show(c.quote)}”</span>
+                        <button key={ci} onClick={() => setActive({ p: pi, c: ci })} className={`block w-full rounded-xl border-l-4 px-3 py-2 text-left text-[13px] transition ${isActive ? 'border-brand-500 bg-brand-50' : 'border-stone-200 bg-stone-50 hover:bg-stone-100'}`}>
+                          <span className="italic text-stone-600">“{show(c.quote)}”</span>
                           <span className="mt-1 flex items-center gap-2">
                             <span className={`chip !py-0.5 ring-1 ${DOC_COLORS[c.doc]}`}>{DOC_LABELS[c.doc]}</span>
                             {c.verified ? (
@@ -173,18 +173,18 @@ export function AppealPanel({ state, communityTactic, onNext }: { state: CaseSta
           </div>
         </div>
 
-        <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-          <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-500">
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-stone-50">
+          <div className="flex items-center justify-between border-b border-stone-200 bg-white px-4 py-2.5 text-xs font-semibold text-stone-500">
             <span>Source: {sourceView ? DOC_LABELS[sourceView.doc] : 'select a quote'}</span>
-            <span className="text-slate-400">click any quote</span>
+            <span className="text-stone-400">click any quote</span>
           </div>
           <AnimatePresence mode="wait">
-            <motion.pre key={sourceView ? `${sourceView.doc}-${sourceView.idx}-${showRedacted}` : 'none'} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="scrollbar-thin max-h-[300px] flex-1 overflow-auto whitespace-pre-wrap p-4 font-mono text-[11.5px] leading-relaxed text-slate-500 lg:max-h-[500px]">
+            <motion.pre key={sourceView ? `${sourceView.doc}-${sourceView.idx}-${showRedacted}` : 'none'} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="scrollbar-thin max-h-[300px] flex-1 overflow-auto whitespace-pre-wrap p-4 font-mono text-[11.5px] leading-relaxed text-stone-500 lg:max-h-[500px]">
               {sourceView ? (
                 sourceView.idx >= 0 ? (
                   <>
                     {sourceView.text.slice(0, sourceView.idx)}
-                    <mark ref={markRef} className="rounded bg-brand-200/70 px-0.5 text-slate-900 ring-2 ring-brand-300">
+                    <mark ref={markRef} className="rounded bg-brand-200/70 px-0.5 text-stone-900 ring-2 ring-brand-300">
                       {sourceView.text.slice(sourceView.idx, sourceView.idx + sourceView.len)}
                     </mark>
                     {sourceView.text.slice(sourceView.idx + sourceView.len)}
